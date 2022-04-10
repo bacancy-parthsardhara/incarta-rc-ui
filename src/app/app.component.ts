@@ -1,3 +1,4 @@
+import { Options } from '@angular-slider/ngx-slider';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
@@ -8,6 +9,13 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
   title = 'Grinberg';
+
+  public experienceSliderValue: number = 0;
+  public experienceSliderOptions: Options = {
+    floor: 0,
+    ceil: 50,
+    readOnly: true
+  };
 
   public calenderDayList: any[] = [
     { displayText: 1, value: 1 },
@@ -100,12 +108,11 @@ export class AppComponent {
     { displayText: 'Developer', value: 0 }
   ];
 
-  month = 'January';
-  year = ['', 2020.2, '2021', 2022];
-
   public dayFormControl: any = new FormControl();
   public myForm: FormGroup;
-  
+  public isDisplayValue: boolean = false;
+  public submittedData = {};
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -116,6 +123,19 @@ export class AppComponent {
       role: new FormControl(0),
     });
 
-    this.myForm.valueChanges.subscribe(data => console.log(data));
+    this.myForm.valueChanges.subscribe(data => {
+      if (this.experienceSliderValue !== data?.role) {
+        this.experienceSliderValue = data?.role;
+      }
+    });
+  }
+
+  public onSubmit(): void {
+    this.submittedData = {
+      ...this.myForm.value,
+      role: this.roleList.find(role => role.value === +this.myForm.value.role)?.displayText,
+      experience: this.experienceSliderValue
+    }
+    this.isDisplayValue = true;
   }
 }

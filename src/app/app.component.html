@@ -1,8 +1,8 @@
-<form [formGroup]="myForm">
+<form class="container" [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="dob-dd">Date of joining </label>
     <div class="row">
-      <div class="col-4 p-0">
+      <div class="col-4 pe-0">
         <app-common-dropdown [classList]="'form-control'" [selectFC]="myForm.get('day')" [options]="calenderDayList">
         </app-common-dropdown>
       </div>
@@ -11,55 +11,32 @@
           [options]="calenderMonthList">
         </app-common-dropdown>
       </div>
-      <div class="col-4 p-0">
+      <div class="col-4 ps-0">
         <app-common-dropdown [classList]="'form-control'" [selectFC]="myForm.get('year')" [options]="calenderYearList">
         </app-common-dropdown>
       </div>
     </div>
   </div>
 
-  <div class="form-group">
-    <label for="role">Role: </label>
-    <app-common-dropdown [classList]="'form-control'" [selectFC]="myForm.get('role')" [options]="roleList">
-    </app-common-dropdown>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="role">Role: </label>
+        <app-common-dropdown [classList]="'form-control'" [selectFC]="myForm.get('role')" [options]="roleList">
+        </app-common-dropdown>
+      </div>
+    </div>
+    <div class="col-6">
+    <ngx-slider [(value)]="experienceSliderValue" [options]="experienceSliderOptions"></ngx-slider>
   </div>
+</div>
+<button type="submit" >Submit</button>
 </form>
 
-<label for="dob-dd">Date of joining </label>
-<select id="dob-dd">
-  <!-- <option *ngFor="let i=1; i<=31; i++">1</option> -->
-  <ng-container *ngFor="let day of calenderDayList">
-    <option [value]="day.value">{{day.displayText}}</option>
-  </ng-container>
-  <!-- <option value="1">1</option> -->
-</select>
-<select class="dob-mmm">
-  <ng-container *ngFor="let month of calenderMonthList">
-    <option [value]="month.value">{{month.displayText}}</option>
-  </ng-container>
-  <!-- <option>{{month}}</option> -->
-</select>
-<select class="dob-yyyy">
-  <ng-container *ngFor="let year of calenderYearList">
-    <option [value]="year.value">{{year.displayText}}</option>
-  </ng-container>
-  <!-- <option *ngIf="year">{{year[2]}}</option> -->
-</select>
-<br />
-<label for="role">Role: </label>
-<select id="role">
-  <ng-container *ngFor="let role of roleList">
-    <option [value]="role.value">{{role.displayText}}</option>
-  </ng-container>
-</select>
 
-<br />
-<label for="yoe">Experience</label>
-<input type="radio" name="" id="" />0-3 <input type="radio" name="" id="" />3-5
-<input type="radio" name="" id="" />5-10
-<input type="radio" name="" id="" />10-15
-<input type="radio" name="" id="" />15-20
-<input type="radio" name="" id="" />20-25
-<input type="radio" name="" id="" />25-30
+<p>Previous Submite value:</p>
+<p>Date :- {{submittedData.day}} {{submittedData.month}} {{submittedData.year}}</p>
+<p>Role:- {{submittedData.role}}</p>
+<p>Experience Slider:- {{submittedData.experience}}</p>
 
 <router-outlet></router-outlet>
