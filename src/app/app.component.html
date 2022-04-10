@@ -1,22 +1,31 @@
 <label for="dob-dd">Date of joining </label>
 <select id="dob-dd">
   <!-- <option *ngFor="let i=1; i<=31; i++">1</option> -->
-  <option value="1">1</option>
+  <ng-container *ngFor="let day of calenderDayList">
+  <option [value]="day.value">{{day.displayText}}</option>
+  </ng-container>
+  <!-- <option value="1">1</option> -->
 </select>
 <select class="dob-mmm">
-  <option>{{month}}</option>
+  <ng-container *ngFor="let month of calenderMonthList">
+    <option [value]="month.value">{{month.displayText}}</option>
+  </ng-container>
+  <!-- <option>{{month}}</option> -->
 </select>
 <select class="dob-yyyy">
-  <option *ngIf="year">{{year[2]}}</option>
+  <ng-container *ngFor="let year of calenderYearList">
+    <option [value]="year.value">{{year.displayText}}</option>
+  </ng-container>
+  <!-- <option *ngIf="year">{{year[2]}}</option> -->
 </select>
 <br />
 <label for="role">Role: </label>
 <select id="role">
-  <option>CEO</option>
-  <optgroup>Director</optgroup>
-  <option>Manager</option>
-  <option>Developer</option>
+  <ng-container *ngFor="let role of roleList">
+    <option [value]="role.value">{{role.displayText}}</option>
+  </ng-container>
 </select>
+
 <br />
 <label for="yoe">Experience</label>
 <input type="radio" name="" id="" />0-3 <input type="radio" name="" id="" />3-5
