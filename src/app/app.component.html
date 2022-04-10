@@ -1,8 +1,35 @@
+<form [formGroup]="myForm">
+  <div class="form-group">
+    <label for="dob-dd">Date of joining </label>
+    <div class="row">
+      <div class="col-4 p-0">
+        <app-common-dropdown [classList]="'form-control'" [selectFC]="myForm.get('day')" [options]="calenderDayList">
+        </app-common-dropdown>
+      </div>
+      <div class="col-4 p-0">
+        <app-common-dropdown [classList]="'form-control'" [selectFC]="myForm.get('month')"
+          [options]="calenderMonthList">
+        </app-common-dropdown>
+      </div>
+      <div class="col-4 p-0">
+        <app-common-dropdown [classList]="'form-control'" [selectFC]="myForm.get('year')" [options]="calenderYearList">
+        </app-common-dropdown>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="role">Role: </label>
+    <app-common-dropdown [classList]="'form-control'" [selectFC]="myForm.get('role')" [options]="roleList">
+    </app-common-dropdown>
+  </div>
+</form>
+
 <label for="dob-dd">Date of joining </label>
 <select id="dob-dd">
   <!-- <option *ngFor="let i=1; i<=31; i++">1</option> -->
   <ng-container *ngFor="let day of calenderDayList">
-  <option [value]="day.value">{{day.displayText}}</option>
+    <option [value]="day.value">{{day.displayText}}</option>
   </ng-container>
   <!-- <option value="1">1</option> -->
 </select>

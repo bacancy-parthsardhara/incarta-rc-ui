@@ -1,0 +1,5 @@
+<select [class]="classList" [formControl]="selectFC">
+    <ng-container *ngFor="let item of options">
+        <option [value]="item?.value">{{item?.displayText}}</option>
+    </ng-container>
+</select>

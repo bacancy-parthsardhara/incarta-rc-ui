@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -101,4 +102,20 @@ export class AppComponent {
 
   month = 'January';
   year = ['', 2020.2, '2021', 2022];
+
+  public dayFormControl: any = new FormControl();
+  public myForm: FormGroup;
+  
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.myForm = new FormGroup({
+      day: new FormControl(1),
+      month: new FormControl('January'),
+      year: new FormControl(1992),
+      role: new FormControl(0),
+    });
+
+    this.myForm.valueChanges.subscribe(data => console.log(data));
+  }
 }
