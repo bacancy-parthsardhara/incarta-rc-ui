@@ -1,13 +1,14 @@
 import { Options } from '@angular-slider/ngx-slider';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { IDropdownOptions } from './interface/dropdown-options.interface';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Grinberg';
 
   public experienceSliderValue: number = 0;
@@ -17,7 +18,7 @@ export class AppComponent {
     readOnly: true
   };
 
-  public calenderDayList: any[] = [
+  public calenderDayList: IDropdownOptions[] = [
     { displayText: 1, value: 1 },
     { displayText: 2, value: 2 },
     { displayText: 3, value: 3 },
@@ -51,7 +52,7 @@ export class AppComponent {
     { displayText: 31, value: 31 }
   ];
 
-  public calenderMonthList: any[] = [
+  public calenderMonthList: IDropdownOptions[] = [
     { displayText: 'January', value: 'January' },
     { displayText: 'February', value: 'February' },
     { displayText: 'March', value: 'March' },
@@ -66,7 +67,7 @@ export class AppComponent {
     { displayText: 'December', value: 'December' }
   ];
 
-  public calenderYearList: any[] = [
+  public calenderYearList: IDropdownOptions[] = [
     { displayText: 1992, value: 1992 },
     { displayText: 1993, value: 1993 },
     { displayText: 1994, value: 1994 },
@@ -99,7 +100,7 @@ export class AppComponent {
     { displayText: 2022, value: 2022 }
   ];
 
-  public roleList = [
+  public roleList: IDropdownOptions[] = [
     { displayText: 'CEO', value: 25 },
     { displayText: 'Director', value: 20 },
     { displayText: 'Manager', value: 15 },
@@ -108,7 +109,6 @@ export class AppComponent {
     { displayText: 'Developer', value: 0 }
   ];
 
-  public dayFormControl: any = new FormControl();
   public myForm: FormGroup;
   public isDisplayValue: boolean = false;
   public submittedData = {};
@@ -133,7 +133,8 @@ export class AppComponent {
   public onSubmit(): void {
     this.submittedData = {
       ...this.myForm.value,
-      role: this.roleList.find(role => role.value === +this.myForm.value.role)?.displayText,
+      roleName: this.roleList.find(role => role.value === +this.myForm.value.role)?.displayText,
+      roleValue: this.myForm.value.role,
       experience: this.experienceSliderValue
     }
     this.isDisplayValue = true;

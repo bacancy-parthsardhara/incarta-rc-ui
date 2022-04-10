@@ -27,16 +27,17 @@
       </div>
     </div>
     <div class="col-6">
-    <ngx-slider [(value)]="experienceSliderValue" [options]="experienceSliderOptions"></ngx-slider>
+      <ngx-slider [(value)]="experienceSliderValue" [options]="experienceSliderOptions"></ngx-slider>
+    </div>
   </div>
-</div>
-<button type="submit" >Submit</button>
+  <button class="btn btn-primary my-2" type="submit">Submit</button>
 </form>
 
-
-<p>Previous Submite value:</p>
-<p>Date :- {{submittedData.day}} {{submittedData.month}} {{submittedData.year}}</p>
-<p>Role:- {{submittedData.role}}</p>
-<p>Experience Slider:- {{submittedData.experience}}</p>
+<div *ngIf="isDisplayValue">
+  <p>Previous Submite value:</p>
+  <p>Date :- {{submittedData?.day}} {{submittedData?.month}} {{submittedData?.year}}</p>
+  <p>Role:- {{submittedData?.roleName}}/{{submittedData?.roleValue}}</p>
+  <p>Experience Slider:- {{submittedData?.experience}}</p>
+</div>
 
 <router-outlet></router-outlet>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { IDropdownOptions } from 'src/app/interface/dropdown-options.interface';
 
 @Component({
   selector: 'app-common-dropdown',
@@ -9,9 +10,8 @@ import { FormControl } from '@angular/forms';
 export class CommonDropdownComponent implements OnInit {
 
   @Input() selectFC = new FormControl;
-  @Input() options: any = [];
-  @Input() classList: any = '';
-
+  @Input() options: IDropdownOptions[] = [];
+  @Input() classList: string = '';
 
   constructor() { }
 
